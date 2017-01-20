@@ -251,18 +251,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     opacity.render();
     brushWidth.render();
 
+    document.getElementById('showHideToolbar').addEventListener('click', function(event) {
+        var elm = event.target;
+        if ((' ' + elm.className + ' ').indexOf(' hidden ') != -1) {
+            elm.className = elm.className.replace('hidden', '');
+        } else {
+            elm.className = elm.className.replace('hidden', '');
+        }
+    });
+
     new Draw({
         rootElement: 'canvas_wrapper',
         drawingMethod: new FollowTheCursorDotDrawingMethod(),
         context: {lineJoin: 'round', lineCap: 'round'}
     });
-});
-
-document.getElementById('showHideToolbar').addEventListener('click', function(event) {
-    var elm = event.target;
-    if ((' ' + elm.className + ' ').indexOf(' hidden ') != -1) {
-        elm.className = elm.className.replace('hidden', '');
-    } else {
-        elm.className = elm.className.replace('hidden', '');
-    }
 });
