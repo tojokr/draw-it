@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Auchan Traiteur</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="draw.css" type="text/css" />
+
+        <script type="text/javascript" src="js/utils.js"></script>
+        <script type="text/javascript" src="js/color.js"></script>
+        <script type="text/javascript" src="js/opacity.js"></script>
+        <script type="text/javascript" src="js/draw.js"></script>
+    </head>
+    <body>
+        <!--
+        sources :
+        - http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/
+        - http://www.vincent-rousseau.net/paint-html5-canvas/
+        - http://www.vincent-rousseau.net/html5/paint_mobile/index.html
+        -->
+        <div id="paint">
+            <div id="canvas_wrapper"></div>
+            <div id="toolbar">
+                <div id="showHideToolbar">X</div>
+                <div id="brushes">
+                    <form id="brush_width_form">
+
+                        <br/>
+
+                        <input type="reset" id="reset" value="Réinitialiser" />
+                        <input type="button" id="save" value="Sauvergarder mon image" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

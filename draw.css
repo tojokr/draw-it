@@ -1,0 +1,68 @@
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body, #paint {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.hidden{
+    display: none;
+}
+
+#canvas_wrapper {
+    width: 100%;
+    height: calc(100% - 5px);
+}
+
+#toolbar {
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 20px;
+    border-width: 0 1px 1px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 90%;
+    transition: all 0.5s ease-in-out 0s
+}
+
+#toolbar .showHideAction {
+    position: absolute;
+    right: -40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-width: 1px 1px 1px 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+#color li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+#color li a {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    #toolbar {
+        width: 100%;
+    }
+}
+
+/*
+@media screen and (orientation:portrait) {
+
+}
+
+@media screen and (orientation:landscape) {
+
+}*/
