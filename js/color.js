@@ -53,7 +53,8 @@ class Color {
         return this.setColor(0, colorValue);
     }
     render() {
-        var render = content = '';
+        var render = '',
+            content = '';
 
         this.colors.forEach(function(element) {
             render += this.childHtml.replace(/%s/g, element);
