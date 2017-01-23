@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     new Draw({
         rootElement: 'canvas_wrapper',
-        drawingMethod: new FollowTheCursorDotDrawingMethod(),
+        drawingMethod: new FollowTheCursorDrawingMethod(),
         context: {lineJoin: 'round', lineCap: 'round'}
     });
 });
