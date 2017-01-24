@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Auchan Traiteur</title>
+        <title>-</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="draw.css" type="text/css" />
 
         <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/color.js"></script>
         <script type="text/javascript" src="js/opacity.js"></script>
+        <script type="text/javascript" src="js/drawingMethod.js"></script>
+        <script type="text/javascript" src="js/drawing_method/followTheCursor.js"></script>
         <script type="text/javascript" src="js/draw.js"></script>
     </head>
     <body>
@@ -18,7 +20,9 @@
         - http://www.vincent-rousseau.net/html5/paint_mobile/index.html
         -->
         <div id="paint">
-            <div id="canvas_wrapper"></div>
+            <div id="canvas_wrapper">
+                <canvas id="canvas"></canvas>
+            </div>
             <div id="toolbar">
                 <div id="showHideToolbar">X</div>
                 <div id="brushes">
