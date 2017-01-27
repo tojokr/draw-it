@@ -1,26 +1,24 @@
 /* global colors */
 /* global colorPallet */
 /* global opacity */
+/* global cursorWidth */
 
-class Draw {
-
-    constructor(config) {
+draw = {
+    init: function(config) {
         this.initConfig(config);
         this.initDraw();
         this.initialized = true;
 
         this.initDrawEvents();
         this.initDrawActionsEvents();
-    }
-
-    initConfig(config) {
+    },
+    initConfig: function(config) {
         this.config = config;
 
         this.$rootElement = document.getElementById(this.config.rootElement);
         this.canvasId = 'canvas';
-    }
-
-    initDraw() {
+    },
+    initDraw: function() {
         var canvasWidth = this.$rootElement.offsetWidth,
             canvasHeight = this.$rootElement.offsetHeight;
 /*
@@ -39,21 +37,18 @@ class Draw {
             this.context.lineJoin = this.config.context.lineJoin;
             this.context.lineCap = this.config.context.lineCap;
         }
-    }
-
-    initDrawEvents() {
+    },
+    initDrawEvents: function() {
         var self = this;
 /*
         window.addEventListener('resize', function(event) {
             self.initDraw();
         });*/
-    }
-
-    resetCanvas() {
+    },
+    resetCanvas: function() {
         this.context.clearRect(0,0, this.$canvas.offsetWidth, this.$canvas.offsetWidth);
-    }
-
-    initDrawActionsEvents() {
+    },
+    initDrawActionsEvents: function() {
         var self = this;
 
         this.config.drawingMethod.setCanvas(this.$canvas);
@@ -92,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     opacity.render();
     cursorWidth.render();
 
-    new Draw({
+    draw.init({
         rootElement: 'canvas_wrapper',
         drawingMethod: followTheCursorDrawingMethod,
         context: {lineJoin: 'round', lineCap: 'round'}
