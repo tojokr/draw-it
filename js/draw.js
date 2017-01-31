@@ -92,13 +92,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         drawingMethod: followTheCursorDrawingMethod,
         context: {lineJoin: 'round', lineCap: 'round'}
     });
-
+/*
+document.getElementById('anchor-content').style.position = 'absolute';
+document.getElementById('anchor-content').style.left = '-50px';
+*/
     document.getElementById('showHideToolbar').addEventListener('click', function(event) {
         var elm = document.getElementById('toolbar');
-        if (elm.style.left == "0px") {
-            elm.style.left = 0 - parseInt(elm.style.left);
+
+        if (parseInt(elm.style.left) >= 0) {
+            elm.style.left = '-' + document.getElementById('toolbar').offsetWidth + 'px';
         } else {
-            elm.style.left = 0;
+            elm.style.left = '0px';
         }
     });
 });

@@ -1,10 +1,10 @@
 var opacity = {
     parentElement: 'toolbar',
     rootElement: 'opacity',
-    steps: 10,
-    minOpacity: 1,
-    maxOpacity: 100 / this.steps,
-    currentOpacity: this.maxOpacity,
+    steps: 0.005,
+    minOpacity: 0.005,
+    maxOpacity: 1,
+    currentOpacity: 1,
     template:
         '<label for="opacity_input">Opacity: </label>'
         + '<input id="opacity_input" type="range" />'
@@ -27,6 +27,7 @@ var opacity = {
         document.getElementById(this.parentElement).appendChild(content);
 
         var i = document.getElementById(this.rootElement).getElementsByTagName('input')[0];
+        i.setAttribute('step', this.steps);
         i.setAttribute('min', this.minOpacity);
         i.setAttribute('max', this.maxOpacity);
         i.setAttribute('value', this.maxOpacity);
@@ -37,7 +38,7 @@ var opacity = {
         var i = document.getElementById(this.rootElement).getElementsByTagName('input')[0];
         i.addEventListener('change', function(event) {
             document.dispatchEvent(
-                new CustomEvent('change-opacity', {detail: {selectedOpacity: this.value / 100}})
+                new CustomEvent('change-opacity', {detail: {selectedOpacity: this.value}})
             );
         });
     }
