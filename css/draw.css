@@ -4,7 +4,7 @@ html {
     margin: 0;
 }
 
-body, #paint {
+body {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -14,7 +14,7 @@ body, #paint {
     display: none;
 }
 
-#canvas_wrapper {
+#paint {
     width: 100%;
     height: calc(100% - 5px);
 }

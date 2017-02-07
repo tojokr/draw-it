@@ -9,9 +9,18 @@ var colors = {
         navy: '#000080', olive: '#808000', purple: '#800080', red: '#ff0000',
         silver: '#c0c0c0', teal: '#008080', white: '#ffffff', yellow: '#ffff00'
     },
-    toRgb: function(c) {
+    getFormat(c) {
+        if(/^[a-z]+$/.test(c)) {
+
+        }
+    },
+    toRgbArray: function(c) {
         c = '0x' + this.toHex(c).substring(1);
         return [(c>> 16)&255, (c>> 8)&255, c&255];
+    },
+    toRgb: function(c) {
+        c = this.toRgbArray(c);
+        return {r: c[0], g: c[1], b: c[2]};
     },
     toRgbString: function(c) {
         return 'rgb('+this.Rgb(c).join(',')+')';
@@ -100,88 +109,36 @@ var colors = {
 
         });
     },
-    gradientFromTo(from, to, step) {
+    gradients(from, to, steps) {
         var fromRgb = this.toRgb(from),
             toRgb = this.toRgb(to),
             c = [],
-            d = [];
-        fromRgb.forEach(function(e) {
-            
-        });
-    }
-};
+            rr, gg, bb,
+            rrr = 1, ggg = 1, bbb = 1;
 
-var colorPallet = {
-    parentElement: 'toolbar',
-    rootElement: 'color_pallet',
-    template: '<span><a href="#" style="background-color:%s" data-color="%s"></a></span>',
-    colors: [],
+        rr = Math.abs(toRgb[0] - fromRgb[0]);
+        gg = Math.abs(toRgb[1] - fromRgb[1]);
+        bb = Math.abs(toRgb[2] - fromRgb[2]);
 
-    getColors: function() {
-        return this.colors;
-    },
-    setColors: function(colors) {
-        if (typeof colors === 'function') {
-            /* http://krazydad.com/tutorials/makecolors.php*/
-            this.colors = colors();
-        } else if (colors instanceof Object) {
-            this.colors = this.objectToArray(colors);
-        } else if (colors instanceof Array) {
-            this.colors = colors;
-        }
-    },
-    objectToArray: function(obj) {
-        var arr = [];
+        if (toRgb[0] - fromRgb[0] < 0) { rrr = -1; }
+        if (toRgb[1] - fromRgb[1] < 0) { ggg = -1; }
+        if (toRgb[2] - fromRgb[2] < 0) { bbb = -1; }
 
-        if (typeof obj !== 'object') {
-            throw new Exception('Not an object');
+        if (steps === undefined) {
+            steps = Math.min(Math.max(rr, gg, bb), 255);
+        } else {
+            steps--;
         }
 
-        for (var i in obj) {
-            arr[i] = obj[i];
+        for(var i = 0; i <= steps; i++) {
+            c.push(
+                [
+                    Math.round(fromRgb[0] + i * (rr / steps) * rrr),
+                    Math.round(fromRgb[1] + i * (gg / steps) * ggg),
+                    Math.round(fromRgb[2] + i * (bb / steps) * bbb)
+                ]
+            );
         }
-        return arr;
-    },
-    getColor: function(idx) {
-        if (idx !== undefined || this.currentColors.indexOf(idx) === -1) {
-            idx = 0;
-        }
-        return this.currentColors.indexOf(idx);
-    },
-    setColor: function(idx, colorValue) {
-        this.currentColors[idx] = colorValue;
-    },
-    setColor: function(colorValue) {
-        return this.setColor(0, colorValue);
-    },
-    render: function() {
-        var render = '',
-            content = '';
-
-        this.colors.forEach(function(element) {
-            render += this.template.replace(/%s/g, element);
-        }, this);
-        content = document.createElement('div');
-        content.setAttribute('id', this.rootElement);
-
-        content.innerHTML = render;
-        document.getElementById(this.parentElement).appendChild(content);
-
-        this.initEvents();
-    },
-    initEvents: function() {
-        document.getElementById(this.rootElement).addEventListener('click', function(event) {
-            if (event.target !== undefined && event.target.getAttribute('data-color') !== undefined) {
-                event.preventDefault();
-                //this.config.colorPallet.setColor(event.target.getAttribute('data-color'));
-                document.dispatchEvent(
-                    new CustomEvent(
-                        'change-color', {
-                            detail: {selectedColor: event.target.getAttribute('data-color')}
-                        }
-                    )
-                );
-            }
-        });
+        return c;
     }
 };

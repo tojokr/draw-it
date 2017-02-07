@@ -21,13 +21,7 @@ draw = {
     initDraw: function() {
         var canvasWidth = this.$rootElement.offsetWidth,
             canvasHeight = this.$rootElement.offsetHeight;
-/*
-        if (!this.initialized) {
-            var canvas = document.createElement('canvas');
-            canvas.setAttribute('id', this.canvasId);
-            this.$rootElement.appendChild(canvas);
-        }
-*/
+
         this.$canvas = document.getElementById(this.canvasId);
         this.$canvas.setAttribute('width', canvasWidth);
         this.$canvas.setAttribute('height', canvasHeight);
@@ -88,14 +82,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     cursorWidth.render();
 
     draw.init({
-        rootElement: 'canvas_wrapper',
+        rootElement: 'paint',
         drawingMethod: followTheCursorDrawingMethod,
         context: {lineJoin: 'round', lineCap: 'round'}
     });
-/*
-document.getElementById('anchor-content').style.position = 'absolute';
-document.getElementById('anchor-content').style.left = '-50px';
-*/
+    /*
+     lineJoin: round, bevel or miter
+     lineCap: butt, round or square
+    */
+
+    document.getElementById('toolbar').className =
+        document.getElementById("toolbar").className
+            .replace(new RegExp('(?:^|\\s)'+ 'hidden' + '(?:\\s|$)'), ' ');
+
     document.getElementById('showHideToolbar').addEventListener('click', function(event) {
         var elm = document.getElementById('toolbar');
 

@@ -2,11 +2,15 @@
 <html>
     <head>
         <title>-</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="draw.css" type="text/css" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/draw.css" type="text/css" />
 
         <script type="text/javascript" src="js/utils.js"></script>
-        <script type="text/javascript" src="js/color.js"></script>
+        <script type="text/javascript" src="js/color/color.js"></script>
+        <script type="text/javascript" src="js/color/colorPallet.js"></script>
         <script type="text/javascript" src="js/opacity.js"></script>
         <script type="text/javascript" src="js/cursorWidth.js"></script>
         <script type="text/javascript" src="js/drawingMethod.js"></script>
@@ -19,15 +23,34 @@
         - http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/
         - http://www.vincent-rousseau.net/paint-html5-canvas/
         - http://www.vincent-rousseau.net/html5/paint_mobile/index.html
+        http://codepen.io/ntaylor09/pen/ezZGQZ
+        http://designinstruct.com/web-design/examples-html5-canvas/
+        http://www.ethangardner.com/articles/2009/03/15/a-math-based-approach-to-color-theory-using-hue-saturation-and-brightness-hsb/
+
+
+
+        https://weather-pwa-sample.firebaseapp.com/final/
+        https://developer.yahoo.com/weather/
         -->
         <div id="paint">
-            <div id="canvas_wrapper">
-                <canvas id="canvas"></canvas>
-            </div>
-            <div id="toolbar">
+            <canvas id="canvas"></canvas>
+            <div id="toolbar" class="hidden">
                 <div id="showHideToolbar">X</div>
-                <div id="brushes">
-                    <form id="brush_width_form">
+                <div id="color_pallet">
+                    <span><a href="#" data-color="%s"></a></span>
+                </div>
+                <div id="opacity">
+                    <label for="opacity_input">Opacity: </label>
+                    <input id="opacity_input" type="range" min="0.005" max="1" step="0.005" value="1" />
+                    <output id="opacity_output"></output>
+                </div>
+                <div id="cursor_width">
+                    <label for="cursor_width_input">Cursor width: </label>
+                    <input id="cursor_width_input" type="range" min="1" max="100" step="1" value="5" />
+                    <output id="cursor_width_output"></output>
+                </div>
+                <div>
+                    <form id="canvas_actions">
                         <input type="reset" id="reset" value="Réinitialiser" />
                         <input type="button" id="save" value="Sauvergarder mon image" />
                     </form>
