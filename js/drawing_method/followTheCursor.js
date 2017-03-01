@@ -47,7 +47,7 @@ followTheCursorDrawingMethod.setEvents = function() {
         }, false);
 
     this.canvas.addEventListener('mousedown', function(e) {
-        e.preDefault();
+        e.preventDefault();
 
         self.isDrawing = true;
 
@@ -56,14 +56,14 @@ followTheCursorDrawingMethod.setEvents = function() {
     });
 
     this.canvas.addEventListener("mouseup", function(e) {
-        e.preDefault();
+        e.preventDefault();
 
         self.isDrawing = false;
         self.started = false;
     });
 
     this.canvas.addEventListener("mousemove", function(e) {
-        e.preDefault();
+        e.preventDefault();
 
         if (self.isDrawing) {
             self.cursorX = (e.pageX - this.offsetLeft);
@@ -74,20 +74,20 @@ followTheCursorDrawingMethod.setEvents = function() {
     });
 
     this.canvas.addEventListener('touchstart', function(e) {
-        e.preDefault();
+        e.preventDefault();
 
         self.isDrawing = true;
     });
 
     this.canvas.addEventListener('touchend', function(e) {
-        e.preDefault();
+        e.preventDefault();
 
         self.isDrawing = false;
         self.started = false;
     });
 
     this.canvas.addEventListener('touchmove', function(e) {
-        e.preDefault();
+        e.preventDefault();
 
         if (self.isDrawing) {
             self.cursorX = (e.touches[0].pageX - this.offsetLeft);
